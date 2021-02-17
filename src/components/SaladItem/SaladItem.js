@@ -1,7 +1,8 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import PropTypes from 'prop-types';
 import { createUseStyles } from 'react-jss'
 
+import UserContext from '../User/User';
 
 const useStyles = createUseStyles({
   add: {
@@ -31,15 +32,16 @@ const useStyles = createUseStyles({
 
 const SaladItem = ({image, name}) => {
 
+  const context = useContext(UserContext)
   const classes = useStyles();
+  const favorite = context.favorites.includes(name)
 
-  const favorite = true;
   return(
     <div className={classes.wrapper}>
         <h3>
           {name}
         </h3>
-        <span className={classes.favorite} aria-label={favorite ? 'Favorite' : 'Not Favorite'}>
+        <span className={classes.favorite} aria-label={ favorite ? 'Favorite' : 'Not Favorite'}>
           {favorite ? '😋' : ''}
         </span>
         <button className={classes.add}>
