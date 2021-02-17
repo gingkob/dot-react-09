@@ -1,5 +1,7 @@
-import React from 'react'
-import { createUseStyles } from 'react-jss'
+import React, { useContext } from 'react';
+import { createUseStyles } from 'react-jss';
+
+import { SaladContext } from '../SaladMaker/SaladMaker';
 
 const useStyle = createUseStyles({
   list: {
@@ -21,14 +23,13 @@ const useStyle = createUseStyles({
 const SaladSummary = () => {
 
   const classes = useStyle();
+  const { salad } = useContext(SaladContext);
 
   return (
     <div className={classes.wrapper}>
       <h2>Your Salad</h2>
       <ul className={classes.list}>
-        <li>Apple</li>
-        <li>Avocado</li>
-        <li>Carrots</li>
+        {salad.map(sal => (<li key={sal.id}>{sal.name}</li>))}
       </ul>
     </div>
   )
