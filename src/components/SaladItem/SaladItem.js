@@ -16,6 +16,7 @@ const useStyles = createUseStyles({
     position: 'absolute',
     top: 10,
     right: 10,
+    cursor: 'pointer'
   },
   image: {
     fontSize: 80
@@ -38,7 +39,7 @@ const SaladItem = ({ image, name }) => {
   const classes = useStyles();
   const context = useContext(UserContext)
   const favorite = context.favorites.includes(name)
-  
+
   const { setSalad } = useContext(SaladContext)
   const [id, updateId] = useReducer(reducer, 0);
 
@@ -50,14 +51,18 @@ const SaladItem = ({ image, name }) => {
     updateId();
   };
 
+  function favoritesHandler() {
+    context.setFavorites(name)
+  }
+
   return (
     <div className={classes.wrapper}>
       <h3>
         {name}
       </h3>
-      <span className={classes.favorite} aria-label={favorite ? 'Favorite' : 'Not Favorite'}>
-        {favorite ? '😋' : ''}
-      </span>
+        <span className={classes.favorite} role="button" onClick={favoritesHandler} aria-label={favorite ? 'Favorite' : 'Not Favorite'}>
+          {favorite ? '😋' : '☠️'}
+        </span>
       <button className={classes.add} onClick={update}>
         <span className={classes.image} role="img" aria-label={name}>{image}</span>
       </button>

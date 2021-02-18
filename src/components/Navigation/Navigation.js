@@ -1,12 +1,12 @@
-import React,{useContext} from 'react';
-import {createUseStyles} from 'react-jss';
+import React, { useContext } from 'react';
+import { createUseStyles } from 'react-jss';
 import UserContext from '../User/User';
 
 const useStyles = createUseStyles({
-  wrapper:{
-    borderBottom:"1px solid black",
+  wrapper: {
+    borderBottom: "1px solid black",
     padding: [15, 10],
-    textAlign:'right'
+    textAlign: 'right'
   }
 })
 
